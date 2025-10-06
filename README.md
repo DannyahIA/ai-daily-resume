@@ -1,57 +1,57 @@
 # Daily Maker with AI 🤖📊
 
-Uma aplicação desktop inteligente que monitora sua atividade, analisa o contexto com IA e gera relatórios diários estruturados.
+An intelligent desktop application that monitors your activity, analyzes context with AI, and generates structured daily reports.
 
 ![Version](https://img.shields.io/badge/version-3.5-blue)
 ![Python](https://img.shields.io/badge/python-3.8+-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
 
-## 🌟 Funcionalidades
+## 🌟 Features
 
-- **Monitoramento Automático**: Captura screenshots a cada 5 minutos
-- **Análise com IA**: Usa Google Gemini para analisar e descrever atividades
-- **Relatórios Estruturados**: Gera summaries matutinos e vespertinos
-- **Banner Sempre Visível**: Indicador de status com feedback visual a cada captura
-- **Interface Intuitiva**: GUI com abas para fácil navegação
-- **Configuração Flexível**: Personalize horários, idiomas e modelos de IA
-- **Segurança**: Opção de mostrar/ocultar API key
-- **Templates Personalizáveis**: Defina seu próprio formato de relatório
+- **Automatic Monitoring**: Captures screenshots every 5 minutes
+- **AI Analysis**: Uses Google Gemini to analyze and describe activities
+- **Structured Reports**: Generates morning and afternoon summaries
+- **Always Visible Banner**: Status indicator with visual feedback on each capture
+- **Intuitive Interface**: GUI with tabs for easy navigation
+- **Flexible Configuration**: Customize schedules, languages, and AI models
+- **Security**: Option to show/hide API key
+- **Customizable Templates**: Define your own report format
 
-## 📋 Requisitos
+## 📋 Requirements
 
-- Python 3.8 ou superior
-- Google Gemini API Key ([obtenha aqui](https://ai.google.dev/))
-- Sistema operacional: Linux ou Windows
+- Python 3.8 or higher
+- Google Gemini API Key ([get it here](https://ai.google.dev/))
+- Operating system: Linux or Windows
 
-## 🚀 Instalação
+## 🚀 Installation
 
-### Opção 1: Usar Executável Pré-compilado (Recomendado)
+### Option 1: Use Precompiled Executable (Recommended)
 
-1. Baixe o executável para seu sistema:
-   - **Linux**: `DailyMaker` (sem extensão)
-   - **Windows**: `DailyMaker.exe`
+1. Download the executable for your system:
+    - **Linux**: `DailyMaker` (no extension)
+    - **Windows**: `DailyMaker.exe`
 
-2. Execute o arquivo
-   - **Linux**: `./DailyMaker`
-   - **Windows**: Clique duas vezes em `DailyMaker.exe`
+2. Run the file
+    - **Linux**: `./DailyMaker`
+    - **Windows**: Double-click `DailyMaker.exe`
 
-### Opção 2: Executar a partir do Código Fonte
+### Option 2: Run from Source Code
 
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone https://github.com/DannyahIA/ai-daily-resume.git
 cd ai-daily-resume
 
-# Instale as dependências
+# Install dependencies
 pip install -r requirements.txt
 
-# Execute a aplicação
+# Run the application
 python daily_maker_gui.py
 ```
 
-## 🔨 Build do Zero
+## 🔨 Build from Scratch
 
-Se você deseja compilar a aplicação você mesmo:
+If you want to compile the application yourself:
 
 ### Linux
 ```bash
@@ -61,120 +61,116 @@ chmod +x build_linux.sh
 
 ### Windows
 ```bash
-# No CMD ou PowerShell
+# In CMD or PowerShell
 build_windows.bat
 
-# Ou no Git Bash
+# Or in Git Bash
 chmod +x build_windows.sh
 ./build_windows.sh
 ```
 
-Para mais detalhes, consulte [BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md)
+For more details, see [BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md)
 
-## ⚙️ Configuração
+## ⚙️ Configuration
 
-1. **Obtenha sua API Key do Gemini**
-   - Acesse [Google AI Studio](https://ai.google.dev/)
-   - Crie uma API key gratuita
+1. **Get your Gemini API Key**
+    - Go to [Google AI Studio](https://ai.google.dev/)
+    - Create a free API key
 
-2. **Configure a Aplicação**
-   - Vá para a aba "Settings"
-   - Preencha seu nome
-   - Cole sua API Key
-   - Ajuste os horários dos relatórios (formato HH:MM)
-   - Escolha o idioma dos summaries
-   - (Opcional) Personalize os modelos de IA
-   - Clique em "Save Settings"
+2. **Configure the Application**
+    - Go to the "Settings" tab
+    - Enter your name
+    - Paste your API Key
+    - Adjust report times (format HH:MM)
+    - Choose the summary language
+    - (Optional) Customize AI models
+    - Click "Save Settings"
 
-3. **Inicie o Monitoramento**
-   - Clique em "Start Monitoring"
-   - O banner de status aparecerá
-   - A cada 5 minutos, uma captura será feita (banner pisca em verde)
+3. **Start Monitoring**
+    - Click "Start Monitoring"
+    - The status banner will appear
+    - Every 5 minutes, a screenshot will be taken (banner flashes green)
 
-## 📊 Como Funciona
+## 📊 How It Works
 
-1. **Captura**: A cada 5 minutos, a aplicação captura uma screenshot
-2. **Análise**: O Google Gemini analisa a imagem e identifica a atividade
-3. **Registro**: A atividade é registrada com timestamp nos logs
-4. **Summaries**: Nos horários configurados, gera relatórios:
-   - **Matutino**: Resume atividades da manhã
-   - **Vespertino**: Resume atividades da tarde e compila o dia todo
-5. **Edição**: Você pode editar o relatório final antes de enviá-lo
+1. **Capture**: Every 5 minutes, the app takes a screenshot
+2. **Analysis**: Google Gemini analyzes the image and identifies the activity
+3. **Logging**: The activity is recorded with a timestamp in the logs
+4. **Summaries**: At configured times, generates reports:
+    - **Morning**: Summarizes morning activities
+    - **Afternoon**: Summarizes afternoon activities and compiles the whole day
+5. **Editing**: You can edit the final report before sending it
 
 ## 🎨 Interface
 
-### Aba "Daily Summary"
-Exibe o relatório gerado pela IA. Você pode editar o texto antes de copiar/enviar.
+### "Daily Summary" Tab
+Displays the AI-generated report. You can edit the text before copying/sending.
 
-### Aba "AI Logs"
-Mostra em tempo real as atividades identificadas pela IA.
+### "AI Logs" Tab
+Shows activities identified by AI in real time.
 
-### Aba "Settings"
-Configurações completas:
-- Nome do usuário
-- API Key (com botão mostrar/ocultar)
-- Horários dos relatórios
-- Idioma (Português/English)
-- Modelos de IA personalizáveis
-- Template do relatório
-- Controles de monitoramento
+### "Settings" Tab
+Full configuration:
+- User name
+- API Key (with show/hide button)
+- Report times
+- Language (Portuguese/English)
+- Customizable AI models
+- Report template
+- Monitoring controls
 
-## 🔒 Privacidade e Segurança
+## 🔒 Privacy & Security
 
-- ✅ Todas as capturas são processadas localmente
-- ✅ Imagens são enviadas apenas para a API do Google Gemini
-- ✅ Nenhum dado é armazenado em servidores externos
-- ✅ Você controla quando o monitoramento está ativo
-- ✅ API Key armazenada localmente em `config.json`
-- ⚠️ Mantenha seu arquivo `config.json` seguro
+- ✅ All captures are processed locally
+- ✅ Images are only sent to the Google Gemini API
+- ✅ No data is stored on external servers
+- ✅ You control when monitoring is active
+- ✅ API Key stored locally in `config.json`
+- ⚠️ Keep your `config.json` file safe
 
-## 🛠️ Solução de Problemas
+## 🛠️ Troubleshooting
 
-### "API ERROR" nos logs
-- Verifique se sua API Key está correta
-- Confirme que você tem créditos disponíveis no Google AI
-- Verifique sua conexão com a internet
+### "API ERROR" in logs
+- Check if your API Key is correct
+- Confirm you have available credits on Google AI
+- Check your internet connection
 
-### Banner não aparece
-- Clique no botão "Show Banner"
-- Verifique se o monitoramento está ativo
+### Banner does not appear
+- Click the "Show Banner" button
+- Check if monitoring is active
 
-### Relatórios não são gerados
-- Confirme se os horários estão no formato HH:MM (24h)
-- Aguarde o horário configurado
-- Verifique se há atividades registradas nos logs
+### Reports are not generated
+- Confirm times are in HH:MM (24h) format
+- Wait for the configured time
+- Check if there are activities logged
 
-### Executável não inicia (Linux)
+### Executable does not start (Linux)
 ```bash
 chmod +x DailyMaker
 ./DailyMaker
 ```
 
-### Antivírus bloqueia (Windows)
-- Adicione exceção para o executável
-- O arquivo é seguro (código-fonte disponível)
+### Antivirus blocks (Windows)
+- Add an exception for the executable
+- The file is safe (source code available)
 
-## 🔄 Modelos de IA Suportados
+## 🔄 Supported AI Models
 
-### Para Análise de Imagens (Vision Model):
-- `gemini-1.5-flash-latest` (padrão, rápido)
-- `gemini-1.5-pro-latest` (mais preciso)
-- `gemini-pro-vision`
+### For Image Analysis (Vision Model):
+- `gemini-2.5-flash-preview-05-20` (default, fast)
 
-### Para Geração de Texto (Text Model):
-- `gemini-1.5-flash-latest` (padrão, rápido)
-- `gemini-1.5-pro-latest` (mais elaborado)
-- `gemini-pro`
+### For Text Generation (Text Model):
+- `gemini-2.5-flash-preview-05-20` (default, fast)
 
-## 📝 Template Personalizado
+## 📝 Custom Template
 
-O template suporta as seguintes variáveis:
-- `[USER_NAME]`: Seu nome
-- `[DATE]`: Data atual
-- `[MORNING_UPDATES]`: Resumo matutino
-- `[AFTERNOON_UPDATES]`: Resumo vespertino
+The template supports the following variables:
+- `[USER_NAME]`: Your name
+- `[DATE]`: Current date
+- `[MORNING_UPDATES]`: Morning summary
+- `[AFTERNOON_UPDATES]`: Afternoon summary
 
-Exemplo:
+Example:
 ```markdown
 # Daily Summary – [USER_NAME] – [DATE]
 ## Morning Updates:
@@ -184,30 +180,31 @@ Exemplo:
 [AFTERNOON_UPDATES]
 ```
 
-## 🤝 Contribuindo
+## 🤝 Contributing
 
-Contribuições são bem-vindas! Sinta-se à vontade para:
-- Reportar bugs
-- Sugerir novas funcionalidades
-- Enviar pull requests
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
 
-## 📄 Licença
+## 📄 License
 
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+This project is under the MIT license. See the LICENSE file for details.
 
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
 **Tavares**
 - GitHub: [@DannyahIA](https://github.com/DannyahIA)
 
-## 🙏 Agradecimentos
+## 🙏 Acknowledgements
 
-- Google Gemini API por fornecer capacidades de IA
-- Comunidade Python por bibliotecas incríveis
+- Google Gemini API for providing AI capabilities
+- Python community for amazing libraries
 
 ---
 
-**Versão atual**: 3.5  
-**Última atualização**: Outubro 2025
+**Current version**: 3.5  
+**Last update**: October 2025
 
-⭐ Se este projeto foi útil, considere dar uma estrela no GitHub!
+⭐ If this project was useful, consider starring it on GitHub!
+
