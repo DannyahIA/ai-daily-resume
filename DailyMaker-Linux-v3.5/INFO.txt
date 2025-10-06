@@ -1,0 +1,23 @@
+Daily Maker with AI - Version 3.5
+========================================
+
+To get started:
+1. Run: ./DailyMaker (or double-click start.sh)
+2. Set your Google Gemini API Key in the Settings tab
+3. Enter your name
+4. Click on "Start Monitoring"
+
+Full documentation: README.md
+Build instructions: BUILD_INSTRUCTIONS.md
+Changelog: CHANGELOG.md
+
+Requirements:
+- Google Gemini API Key (free)
+- Internet connection
+
+Support:
+- GitHub: https://github.com/DannyahIA/ai-daily-resume
+- Issues: https://github.com/DannyahIA/ai-daily-resume/issues
+
+Author: Tavares
+
