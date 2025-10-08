@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 
 """
-Daily Maker with AI (v3.5 - Editable Model Fields)
+Daily Maker with AI (v3.6 - Configurable Capture Interval)
 
 A desktop application that monitors user activity, analyzes
 context with AI, and generates daily reports in a structured format.
 
 Features:
-- Editable text fields to define the Gemini models to be used.
-- "Always on Top" banner indicating monitoring status and flashes at each capture.
+- User-configurable screenshot capture interval.
+- Editable text fields to define Gemini models to be used.
+- "Always on Top" banner indicating monitoring status and flashes on each capture.
 - Button to show/hide the API key.
-- Tabbed GUI for easy use.
 - Settings saved in a local file (config.json).
 
 Author: Tavares
-Version: 3.5
+Version: 3.6
 """
 
 import tkinter as tk
@@ -98,17 +98,18 @@ class MonitoringBanner:
 class DailyMakerApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Daily Maker with AI v3.5")
-        self.root.geometry("700x800")
+        self.root.title("Daily Maker with AI v3.6")
+        self.root.geometry("700x850") # Adjusted height
 
         # Configuration variables
         self.user_name = tk.StringVar()
         self.api_key = tk.StringVar()
+        self.capture_interval = tk.StringVar(value="5")
         self.morning_time = tk.StringVar(value="14:00")
         self.afternoon_time = tk.StringVar(value="17:50")
         self.summary_language = tk.StringVar(value="English")
-        self.vision_model = tk.StringVar(value="gemini-1.5-flash-latest")
-        self.text_model = tk.StringVar(value="gemini-1.5-flash-latest")
+        self.vision_model = tk.StringVar(value="gemini-2.5-flash-preview-05-20")
+        self.text_model = tk.StringVar(value="gemini-2.5-flash-preview-05-20")
         self.monitoring_active = False
 
         self.log_queue = queue.Queue()
@@ -167,27 +168,30 @@ class DailyMakerApp:
         self.api_key_entry.pack(side=tk.LEFT, expand=True, fill='x')
         self.show_key_button = ttk.Button(api_frame, text="👁️", command=self.toggle_api_key_visibility, width=3)
         self.show_key_button.pack(side=tk.LEFT, padx=(5,0))
+
+        add_row("Capture Interval (minutes):", 2)
+        ttk.Entry(frame, textvariable=self.capture_interval, width=10).grid(row=2, column=1, padx=5, pady=5, sticky="w")
         
-        add_row("Morning Summary Time (HH:MM):", 2)
-        ttk.Entry(frame, textvariable=self.morning_time, width=10).grid(row=2, column=1, padx=5, pady=5, sticky="w")
+        add_row("Morning Summary Time (HH:MM):", 3)
+        ttk.Entry(frame, textvariable=self.morning_time, width=10).grid(row=3, column=1, padx=5, pady=5, sticky="w")
         
-        add_row("Afternoon Summary Time (HH:MM):", 3)
-        ttk.Entry(frame, textvariable=self.afternoon_time, width=10).grid(row=3, column=1, padx=5, pady=5, sticky="w")
+        add_row("Afternoon Summary Time (HH:MM):", 4)
+        ttk.Entry(frame, textvariable=self.afternoon_time, width=10).grid(row=4, column=1, padx=5, pady=5, sticky="w")
 
-        add_row("Summary Language:", 4)
-        ttk.Combobox(frame, textvariable=self.summary_language, values=['Portuguese', 'English'], state='readonly').grid(row=4, column=1, padx=5, pady=5, sticky="w")
+        add_row("Summary Language:", 5)
+        ttk.Combobox(frame, textvariable=self.summary_language, values=['English', 'Português'], state='readonly').grid(row=5, column=1, padx=5, pady=5, sticky="w")
 
-        add_row("Vision Model (for screenshots):", 5)
-        ttk.Entry(frame, textvariable=self.vision_model, width=50).grid(row=5, column=1, padx=5, pady=5, sticky="ew")
+        add_row("Vision Model (for screenshots):", 6)
+        ttk.Entry(frame, textvariable=self.vision_model, width=50).grid(row=6, column=1, padx=5, pady=5, sticky="ew")
 
-        add_row("Text Model (for summaries):", 6)
-        ttk.Entry(frame, textvariable=self.text_model, width=50).grid(row=6, column=1, padx=5, pady=5, sticky="ew")
+        add_row("Text Model (for summaries):", 7)
+        ttk.Entry(frame, textvariable=self.text_model, width=50).grid(row=7, column=1, padx=5, pady=5, sticky="ew")
 
-        add_row("Daily Template:", 7)
+        add_row("Daily Template:", 8)
         self.template_text = scrolledtext.ScrolledText(frame, wrap=tk.WORD, height=8)
-        self.template_text.grid(row=7, column=1, padx=5, pady=5, sticky="ew")
+        self.template_text.grid(row=8, column=1, padx=5, pady=5, sticky="ew")
         
-        ttk.Button(frame, text="Save Settings", command=self.save_config).grid(row=8, column=1, padx=5, pady=10, sticky="e")
+        ttk.Button(frame, text="Save Settings", command=self.save_config).grid(row=9, column=1, padx=5, pady=10, sticky="e")
 
         controls_frame = ttk.Frame(self.config_frame)
         controls_frame.pack(fill='x', pady=20)
@@ -213,6 +217,7 @@ class DailyMakerApp:
                 config = json.load(f)
                 self.user_name.set(config.get("user_name", ""))
                 self.api_key.set(config.get("api_key", ""))
+                self.capture_interval.set(config.get("capture_interval", "5"))
                 self.morning_time.set(config.get("morning_time", "14:00"))
                 self.afternoon_time.set(config.get("afternoon_time", "17:50"))
                 self.summary_language.set(config.get("summary_language", "English"))
@@ -227,6 +232,7 @@ class DailyMakerApp:
     def save_config(self):
         config = {
             "user_name": self.user_name.get(), "api_key": self.api_key.get(),
+            "capture_interval": self.capture_interval.get(),
             "morning_time": self.morning_time.get(), "afternoon_time": self.afternoon_time.get(),
             "summary_language": self.summary_language.get(),
             "vision_model": self.vision_model.get(), "text_model": self.text_model.get(),
@@ -234,7 +240,7 @@ class DailyMakerApp:
         }
         with open(CONFIG_FILE, 'w') as f:
             json.dump(config, f, indent=4)
-        messagebox.showinfo("Success", "Settings saved!\n\nRestart monitoring for new schedule or model settings to take effect.")
+        messagebox.showinfo("Success", "Settings saved!\n\nRestart monitoring for new time, interval or model settings to take effect.")
 
     def start_monitoring(self):
         if not self.api_key.get() or not self.user_name.get():
@@ -288,6 +294,7 @@ class DailyMakerApp:
     def get_current_config(self):
         return {k: v.get() for k, v in {
             "user_name": self.user_name, "api_key": self.api_key,
+            "capture_interval": self.capture_interval,
             "morning_time": self.morning_time, "afternoon_time": self.afternoon_time,
             "summary_language": self.summary_language,
             "vision_model": self.vision_model, "text_model": self.text_model
@@ -296,12 +303,18 @@ class DailyMakerApp:
 # --- Monitoring Logic ---
 def run_monitoring_logic(log_queue, config_provider, is_active_checker):
     config = config_provider()
-    CAPTURE_INTERVAL_MINUTES = 5
+    try:
+        capture_interval = int(config.get("capture_interval", 5))
+    except (ValueError, TypeError):
+        capture_interval = 5
+        log_queue.put(("log", f"Invalid capture interval. Using default of {capture_interval} minutes."))
+
     GEMINI_API_URL_BASE = "https://generativelanguage.googleapis.com/v1beta/models/"
     registered_activities = []
     generated_morning_template = ""
     
     log_queue.put(("log", f"Scheduler set for {config['morning_time']} and {config['afternoon_time']}."))
+    log_queue.put(("log", f"Screenshot capture every {capture_interval} minute(s)."))
 
     def call_gemini_api(model, payload, api_key):
         url = f"{GEMINI_API_URL_BASE}{model}:generateContent?key={api_key}"
@@ -336,7 +349,7 @@ def run_monitoring_logic(log_queue, config_provider, is_active_checker):
                     registered_activities.append(f"- {time.strftime('%H:%M')}: {description}")
             os.remove(temp_path)
         except Exception as e:
-            log_queue.put(("log", f"CAPTURE ERROR: {e}"))
+            log_queue.put(("log", f"ERROR in capture: {e}"))
 
     def generate_summary(summary_type):
         nonlocal generated_morning_template
@@ -370,7 +383,7 @@ def run_monitoring_logic(log_queue, config_provider, is_active_checker):
             generated_morning_template = ""
         registered_activities.clear()
 
-    schedule.every(CAPTURE_INTERVAL_MINUTES).minutes.do(analyze_screenshot)
+    schedule.every(capture_interval).minutes.do(analyze_screenshot)
     schedule.every().day.at(config['morning_time']).do(partial(generate_summary, summary_type="Morning"))
     schedule.every().day.at(config['afternoon_time']).do(partial(generate_summary, summary_type="Afternoon"))
     
