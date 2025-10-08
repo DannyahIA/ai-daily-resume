@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [3.5] - 2025-10-06
+## [3.6] - 2025-10-08
+
+### Added
+- Configurable screenshot capture interval (default 5 minutes)
+
+## [3.5] - Previous
 
 ### Added
 - Editable text fields to define the Gemini models to be used
@@ -40,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## Future Roadmap
 
-### [3.6] - Planned
+### [3.8] - Planned
 - [ ] Add support for more languages (Spanish, French)
 - [ ] Export reports to PDF/Markdown
 - [ ] History of previous reports
